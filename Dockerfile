@@ -2,13 +2,14 @@ FROM alpine:3
 
 ENV USERNAME="" PASSWORD=""
 
+COPY nginx.conf /etc/nginx/
+COPY entrypoint.sh /
+
 RUN apk update && \ 
     apk add nginx nginx-mod-http-dav-ext && \
     mkdir /data/ && \
-    rm -rf /var/cache/apk/* 
-
-COPY nginx.conf /etc/nginx/
-COPY entrypoint.sh /
+    chmod +x /entrypoint.sh && \
+    rm -rf /var/cache/apk/*
 
 EXPOSE 80
 
