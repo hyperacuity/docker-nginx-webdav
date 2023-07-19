@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  webdav:
+    image: nginx-webdav:latest
+    container_name: nginx-webdav
+    environment:
+      - USERNAME=${WEBDAV_USER}
+      - PASSWORD=${WEBDAV_PASS}
+    restart: unless-stopped
+    networks:
+      - proxy
+    volumes:
+      - /path/to/nginx.conf:/etc/nginx/nginx.conf
+      - /path/to/data/:/data/
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.webdav.rule=Host(`webdav.domain.tld`)"
+      - "traefik.http.routers.webdav.entrypoints=websecure"
+      - "traefik.http.routers.webdav.tls=true"
+      - "traefik.http.routers.webdav.tls.certresolver=production"
+      - "traefik.http.services.webdav.loadbalancer.server.port=80"
+      - "traefik.http.routers.webdav.service=webdav"
+
+networks:
+  proxy:
+    name: traefik-network
+    external: true
