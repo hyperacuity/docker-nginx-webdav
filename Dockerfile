@@ -13,5 +13,5 @@ RUN apk update && \
 
 EXPOSE 80
 
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"] 
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["/entrypoint.sh && /usr/sbin/nginx -g 'daemon off;'"]
