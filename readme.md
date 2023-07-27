@@ -24,10 +24,12 @@ providing [WebDAV](http://www.webdav.org/) access using [Nginx](https://nginx.or
 
 3. Info
 - If you want to make modifications to the default `/etc/nginx/nginx.conf`,
-copy it to the host (from this repo), \
-mount it inside the container, and restart!
-- Make sure the same user/group from the `nginx.conf` owns the mounted directory using e.g.:\
+copy it to the host (from this repo), mount it inside the container, and restart!
+- Make sure the same user/group from the `nginx.conf` owns the mounted directory using:\
 `sudo chown -R nobody:root [host-path]`
-- The native Webdav client from **Microsoft Windows** (File Explorer) **is non-compliant** and not supported by Nginx (yet).\
-Please use an alternative client like [WinSCP](https://winscp.net/)
+- The native Webdav client from **Microsoft Windows** (File Explorer) **is non-compliant** and \
+not supported by Nginx (yet). Please use an alternative client like [WinSCP](https://winscp.net/)
 
+## License
+
+[GPLv3](https://github.com/hyperacuity/docker-nginx-webdav/blob/main/license.md)
